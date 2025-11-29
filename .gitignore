@@ -1,0 +1,10 @@
+# Ignore the dependencies folder
+node_modules/
+
+# Ignore system files
+.DS_Store
+*.log
+
+# Optional: Ignore your personal database
+# (Uncomment the line below if you want your data to stay private)
+# data.json

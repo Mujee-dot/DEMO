@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const fs = require('fs');
 const readline = require('readline');
 const dayjs = require('dayjs');
@@ -170,6 +171,27 @@ function handleCommand(input) {
       console.log(`Total Sessions: ${count}`);
       console.log(`Total Time:     ${reportHours}h ${reportMinutes}m`);
       console.log(`-----------------------------------`);
+      break;
+
+    case 'list':
+      console.log('--- Your Project Portfolio ---');
+      
+      // 1. Extract just the names from the complex objects
+      // [ {project: "A", ...}, {project: "B", ...} ] -> ["A", "B"]
+      const allNames = allLogs.map(entry => entry.project);
+
+      // 2. Remove duplicates using a Set
+      // This is a professional "One-Liner" to deduplicate an array
+      const uniqueProjects = [...new Set(allNames)];
+
+      if (uniqueProjects.length === 0) {
+        console.log("No projects found. Start one with 'start [name]'");
+      } else {
+        uniqueProjects.forEach((name, index) => {
+          console.log(`${index + 1}. ${name}`);
+        });
+      }
+      console.log('------------------------------');
       break;
 
     default:
